@@ -14,8 +14,8 @@ export default function Hero() {
 
           <div>
             <h1 className="text-[10vw] md:text-[8vw] font-display font-medium leading-[0.9] tracking-tighter uppercase">
-              Pure<br/>
-              Aesthetic
+              Atelier<br/>
+              Modernism
             </h1>
             <p className="mt-8 text-sm uppercase tracking-widest text-muted-foreground max-w-xs leading-relaxed">
               Swiss modernist principles applied to contemporary luxury couture.
