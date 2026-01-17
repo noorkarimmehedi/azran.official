@@ -64,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Main Content with Transition */}
       <main className="flex-grow overflow-hidden">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={location}
             initial={{ opacity: 0, y: 10 }}
