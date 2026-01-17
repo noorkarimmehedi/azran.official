@@ -5,19 +5,11 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "dist/public"
       }
     }
   ],
   "rewrites": [
-    {
-      "source": "/_next/static/(.*)",
-      "destination": "/_next/static/$1"
-    },
-    {
-      "source": "/static/(.*)",
-      "destination": "/static/$1"
-    },
     {
       "source": "/(.*\\.(?:js|css|jpg|jpeg|gif|png|svg|ico|webp|woff|woff2|ttf|eot|otf|json|webmanifest))",
       "destination": "/$1"
@@ -31,40 +23,67 @@
     {
       "source": "/(.*\\.(?:js|mjs|jsx|ts|tsx))",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/javascript; charset=utf-8"
+        }
       ]
     },
     {
       "source": "/(.*\\.css)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "Content-Type", "value": "text/css; charset=utf-8" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Type",
+          "value": "text/css; charset=utf-8"
+        }
       ]
     },
     {
       "source": "/(.*\\.(?:jpg|jpeg|gif|png|svg|ico|webp))",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*\\.(?:woff|woff2|ttf|eot|otf))",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*\\.(?:json|webmanifest))",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "Content-Type", "value": "application/json" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
       ]
     },
     {
       "source": "/index.html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     }
   ],
