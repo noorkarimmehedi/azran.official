@@ -5,19 +5,21 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist",
-        "installCommand": "npm install",
-        "buildCommand": "npm run build"
+        "distDir": "dist"
       }
-    },
-    { 
-      "src": "server/index.js", 
-      "use": "@vercel/node" 
     }
   ],
   "routes": [
     {
-      "src": "/(.*\\.(?:js|css|jpg|jpeg|gif|png|svg|ico|webp|woff|woff2|ttf|eot|otf))",
+      "src": "/_next/static/(.*)",
+      "dest": "/_next/static/$1"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*\\.(?:js|css|jpg|jpeg|gif|png|svg|ico|webp|woff|woff2|ttf|eot|otf|json|webmanifest))",
       "dest": "/$1"
     },
     {
@@ -53,6 +55,13 @@
       ]
     },
     {
+      "source": "/(.*\\.(?:json|webmanifest))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
       "source": "/index.html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
@@ -62,24 +71,6 @@
       "source": "/(.*)",
       "headers": [
         { "key": "Content-Type", "value": "text/html; charset=utf-8" }
-      ]
-    }
-  ]
-}
-      ]
-    },
-    {
-      "source": "/index.html",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "Content-Type", "value": "text/html; charset=utf-8" }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Content-Type", "value": "text/html; charset=utf-8" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
   ],
