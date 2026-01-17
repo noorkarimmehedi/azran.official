@@ -9,22 +9,22 @@
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/_next/static/(.*)",
-      "dest": "/_next/static/$1"
+      "source": "/_next/static/(.*)",
+      "destination": "/_next/static/$1"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "source": "/static/(.*)",
+      "destination": "/static/$1"
     },
     {
-      "src": "/(.*\\.(?:js|css|jpg|jpeg|gif|png|svg|ico|webp|woff|woff2|ttf|eot|otf|json|webmanifest))",
-      "dest": "/$1"
+      "source": "/(.*\\.(?:js|css|jpg|jpeg|gif|png|svg|ico|webp|woff|woff2|ttf|eot|otf|json|webmanifest))",
+      "destination": "/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -65,12 +65,6 @@
       "source": "/index.html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Content-Type", "value": "text/html; charset=utf-8" }
       ]
     }
   ],
