@@ -12,18 +12,9 @@
     },
     { "src": "server/index.js", "use": "@vercel/node" }
   ],
-  "routes": [
-    {
-      "src": "/(.*\\.(?:js|css|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
-      "headers": { "cache-control": "public, max-age=31536000, immutable" },
-      "continue": true
-    },
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
-  ],
   "headers": [
     {
-      "source": "/(.*\\.js)",
+      "source": "/(.*\\.(?:js|mjs|jsx|ts|tsx))",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
         { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
@@ -51,11 +42,27 @@
       ]
     },
     {
+      "source": "/(.*\\.(?:json|webmanifest))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Content-Type", "value": "text/html; charset=utf-8" }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "Content-Type", "value": "text/html; charset=utf-8" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
