@@ -1,60 +1,47 @@
-import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 import heroImage from "@assets/image_1768632374082.png";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen border-b-[20px] border-black bg-white overflow-hidden">
-      {/* 12-Column Radical Grid */}
-      <div className="absolute inset-0 grid grid-cols-12 pointer-events-none">
-        {[...Array(11)].map((_, i) => (
-          <div key={i} className="border-r border-black/5 h-full"></div>
-        ))}
-      </div>
-
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 h-screen">
-        {/* Branding Block */}
-        <div className="md:col-span-8 p-12 md:p-24 border-r-[1px] md:border-r-[20px] border-black flex flex-col justify-between">
+    <section className="relative w-full min-h-[90vh] bg-white overflow-hidden border-b border-black">
+      <div className="grid grid-cols-1 md:grid-cols-12 h-full min-h-[90vh]">
+        {/* Left: Text & Info */}
+        <div className="md:col-span-5 p-8 md:p-16 flex flex-col justify-between border-r border-black">
           <div className="flex justify-between items-start">
-            <span className="font-black text-8xl md:text-[15vw] leading-[0.75] uppercase tracking-tighter">
-              Guzel<br/>Studio
-            </span>
-            <div className="text-right hidden md:block">
-              <span className="text-[10px] font-bold uppercase tracking-[0.4em] rotate-90 origin-right inline-block translate-y-20">
-                Zurich / Switzerland
-              </span>
-            </div>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Guzel / Studio</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">CH-26</span>
           </div>
 
-          <div className="max-w-2xl mt-auto">
-             <h2 className="text-2xl md:text-4xl font-display font-medium leading-none uppercase mb-8">
-               Radical Modernism.<br/>
-               <span className="text-stroke">Bespoke Precision.</span>
-             </h2>
-             <div className="flex gap-4">
-                <button className="swiss-button">Explore Archive</button>
-                <button className="swiss-button bg-black text-white">Book Private Fitting</button>
-             </div>
+          <div>
+            <h1 className="text-[10vw] md:text-[8vw] font-display font-medium leading-[0.9] tracking-tighter uppercase">
+              Pure<br/>
+              Aesthetic
+            </h1>
+            <p className="mt-8 text-sm uppercase tracking-widest text-muted-foreground max-w-xs leading-relaxed">
+              Swiss modernist principles applied to contemporary luxury couture.
+            </p>
+          </div>
+
+          <div className="flex justify-between items-end border-t border-black pt-8">
+            <div className="space-y-1">
+              <span className="block text-[10px] uppercase tracking-widest font-bold">Collection</span>
+              <span className="block text-xl font-display uppercase italic">Genesis 001</span>
+            </div>
+            <ArrowDownRight className="w-10 h-10 stroke-[1px]" />
           </div>
         </div>
 
-        {/* Visual Block */}
-        <div className="md:col-span-4 flex flex-col">
-          <div className="flex-grow bg-black relative overflow-hidden group">
-            <img 
-              src={heroImage} 
-              alt="Editorial" 
-              className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-1000"
-            />
-            <div className="absolute bottom-0 left-0 p-8 text-white uppercase font-black text-5xl leading-none">
-              Gen<br/>esis
-            </div>
-          </div>
-          <div className="p-8 border-t-[20px] border-black">
-            <div className="flex justify-between text-[10px] font-bold tracking-widest uppercase">
-              <span>Collection 001</span>
-              <span>Available — SS26</span>
-            </div>
+        {/* Right: Minimal Image */}
+        <div className="md:col-span-7 relative h-[50vh] md:h-auto bg-neutral-50 overflow-hidden group">
+          <img 
+            src={heroImage} 
+            className="absolute inset-0 w-full h-full object-cover grayscale brightness-95 transition-all duration-1000 group-hover:scale-105"
+            alt="Hero"
+          />
+          {/* Subtle Grid Overlay */}
+          <div className="absolute inset-0 pointer-events-none grid grid-cols-3 opacity-10">
+            <div className="border-r border-black"></div>
+            <div className="border-r border-black"></div>
           </div>
         </div>
       </div>
