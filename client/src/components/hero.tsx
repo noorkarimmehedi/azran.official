@@ -1,25 +1,41 @@
 import { ArrowDownRight } from "lucide-react";
 import heroImage from "@assets/image_1768632374082.png";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
     <section className="relative w-full min-h-[90vh] bg-white overflow-hidden border-b border-black">
       <div className="grid grid-cols-1 md:grid-cols-12 h-full min-h-[90vh]">
         {/* Left: Text & Info */}
-        <div className="md:col-span-5 p-8 md:p-16 flex flex-col justify-between border-r border-black">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-5 p-8 md:p-16 flex flex-col justify-between border-r border-black"
+        >
           <div className="flex justify-between items-start">
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Guzel / Studio</span>
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold">CH-26</span>
           </div>
 
           <div>
-            <h1 className="text-[10vw] md:text-[8vw] font-display font-medium leading-[0.9] tracking-tighter uppercase">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="text-[10vw] md:text-[8vw] font-display font-medium leading-[0.9] tracking-tighter uppercase"
+            >
               Atelier<br/>
               Modernism
-            </h1>
-            <p className="mt-8 text-sm uppercase tracking-widest text-muted-foreground max-w-xs leading-relaxed">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="mt-8 text-sm uppercase tracking-widest text-muted-foreground max-w-xs leading-relaxed"
+            >
               Swiss modernist principles applied to contemporary luxury couture.
-            </p>
+            </motion.p>
           </div>
 
           <div className="flex justify-between items-end border-t border-black pt-8">
@@ -29,10 +45,15 @@ export default function Hero() {
             </div>
             <ArrowDownRight className="w-10 h-10 stroke-[1px]" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Right: Minimal Image */}
-        <div className="md:col-span-7 relative h-[50vh] md:h-auto bg-neutral-50 overflow-hidden group">
+        <motion.div 
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-7 relative h-[50vh] md:h-auto bg-neutral-50 overflow-hidden group"
+        >
           <img 
             src={heroImage} 
             className="absolute inset-0 w-full h-full object-cover grayscale brightness-95 transition-all duration-1000 group-hover:scale-105"
@@ -43,7 +64,7 @@ export default function Hero() {
             <div className="border-r border-black"></div>
             <div className="border-r border-black"></div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

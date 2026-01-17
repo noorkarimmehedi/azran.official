@@ -1,11 +1,13 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ArrowUpRight, Instagram, Twitter, Mail, Menu, Globe, Clock, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [location] = useLocation();
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-black selection:bg-black selection:text-white">
@@ -60,9 +62,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="flex-grow">
-        {children}
+      {/* Main Content with Transition */}
+      <main className="flex-grow overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Luxury Swiss Grid Footer */}
