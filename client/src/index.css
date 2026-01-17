@@ -7,17 +7,14 @@
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-border: hsl(var(--border));
-  --color-gold: hsl(var(--gold));
   --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Libre Baskerville', serif;
-  --font-display: 'Libre Baskerville', serif;
+  --font-display: 'Space Grotesk', sans-serif;
 }
 
 :root {
-  --background: 40 20% 98%; /* Soft off-white / champagne */
-  --foreground: 20 20% 12%; /* Deep charcoal brown */
-  --border: 20 20% 12% / 0.1;
-  --gold: 38 45% 45%; /* Rich Muted Gold */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --border: 0 0% 90%;
 }
 
 @layer base {
@@ -25,14 +22,14 @@
     @apply border-border;
   }
   body {
-    @apply font-serif antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground;
   }
 }
 
-.luxury-gradient {
-  background: linear-gradient(135deg, hsl(38 45% 45% / 0.1) 0%, transparent 100%);
+.swiss-grid-line {
+  @apply border-border;
 }
 
-.text-gold {
-  color: hsl(var(--gold));
+.text-minimal {
+  @apply uppercase tracking-[0.2em] font-medium;
 }

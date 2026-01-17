@@ -3,52 +3,45 @@ import heroImage from "@assets/image_1768632374082.png";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen flex flex-col bg-background">
-      <div className="grid grid-cols-1 lg:grid-cols-12 flex-grow">
-        {/* Left: Classic Luxury Text */}
-        <div className="lg:col-span-5 p-8 lg:p-24 flex flex-col justify-between border-r border-foreground/5">
-          <div className="flex justify-between items-center">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold">Maison Guzel</span>
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold">Est. 2026</span>
+    <section className="relative w-full min-h-[90vh] bg-white overflow-hidden border-b border-black">
+      <div className="grid grid-cols-1 md:grid-cols-12 h-full min-h-[90vh]">
+        {/* Left: Text & Info */}
+        <div className="md:col-span-5 p-8 md:p-16 flex flex-col justify-between border-r border-black">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Guzel / Studio</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">CH-26</span>
           </div>
 
-          <div className="space-y-8">
-            <h1 className="text-6xl lg:text-[7vw] font-display leading-[1.1] tracking-tight">
-              The Art of <br/>
-              <span className="italic">Timeless</span> <br/>
-              Elegance
+          <div>
+            <h1 className="text-[10vw] md:text-[8vw] font-display font-medium leading-[0.9] tracking-tighter uppercase">
+              Pure<br/>
+              Aesthetic
             </h1>
-            <div className="w-24 h-[1px] bg-gold"></div>
-            <p className="text-lg text-foreground/70 max-w-sm leading-relaxed font-sans font-light">
-              Crafting bespoke narratives through rare textiles and heritage-inspired silhouettes.
+            <p className="mt-8 text-sm uppercase tracking-widest text-muted-foreground max-w-xs leading-relaxed">
+              Swiss modernist principles applied to contemporary luxury couture.
             </p>
           </div>
 
-          <div className="pt-12">
-            <button className="group flex items-center gap-4 text-xs uppercase tracking-[0.3em] font-bold hover:text-gold transition-colors">
-              Discover Collection
-              <div className="w-12 h-12 rounded-full border border-foreground/10 flex items-center justify-center group-hover:border-gold group-hover:bg-gold/5 transition-all">
-                <ArrowDownRight className="w-4 h-4" />
-              </div>
-            </button>
+          <div className="flex justify-between items-end border-t border-black pt-8">
+            <div className="space-y-1">
+              <span className="block text-[10px] uppercase tracking-widest font-bold">Collection</span>
+              <span className="block text-xl font-display uppercase italic">Genesis 001</span>
+            </div>
+            <ArrowDownRight className="w-10 h-10 stroke-[1px]" />
           </div>
         </div>
 
-        {/* Right: Cinematic Image */}
-        <div className="lg:col-span-7 relative min-h-[60vh] lg:min-h-0 luxury-gradient">
-          <div className="absolute inset-8 border border-white/20 z-10 pointer-events-none"></div>
+        {/* Right: Minimal Image */}
+        <div className="md:col-span-7 relative h-[50vh] md:h-auto bg-neutral-50 overflow-hidden group">
           <img 
             src={heroImage} 
-            className="absolute inset-0 w-full h-full object-cover brightness-90 contrast-110"
-            alt="Editorial"
+            className="absolute inset-0 w-full h-full object-cover grayscale brightness-95 transition-all duration-1000 group-hover:scale-105"
+            alt="Hero"
           />
-          <div className="absolute inset-0 bg-black/10"></div>
-          
-          {/* Subtle Swiss Grid Overlay (Minimal) */}
-          <div className="absolute inset-0 grid grid-cols-4 pointer-events-none opacity-20">
-            <div className="border-r border-white/10 h-full"></div>
-            <div className="border-r border-white/10 h-full"></div>
-            <div className="border-r border-white/10 h-full"></div>
+          {/* Subtle Grid Overlay */}
+          <div className="absolute inset-0 pointer-events-none grid grid-cols-3 opacity-10">
+            <div className="border-r border-black"></div>
+            <div className="border-r border-black"></div>
           </div>
         </div>
       </div>
