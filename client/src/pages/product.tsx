@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowDownRight, ShieldCheck, Globe, Truck, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,12 +12,12 @@ import imgBridal from "@assets/image_1768632436038.png";
 import imgEarth from "@assets/image_1768632360954.png";
 
 const products = {
-  "1": { id: 1, title: "Noir Kurta", price: "$450", image: imgNoir, description: "A study in absolute black. Constructed from hand-spun Swiss cotton and silk blend, featuring architectural stitching and hidden fasteners.", material: "80% Cotton, 20% Silk", origin: "Studio Zurich", care: "Professional Dry Clean Only" },
-  "2": { id: 2, title: "Sherwani", price: "$1,200", image: imgSherwani, description: "Exquisite hand-embroidery meets radical modern silhouettes. A masterpiece of time and precision.", material: "Premium Raw Silk", origin: "Artisan Workshop", care: "Specialist Care" },
-  "3": { id: 3, title: "Crimson", price: "$890", image: imgCrimson, description: "Deep pigments and structured velvet. A garment designed for presence and permanence.", material: "Silk Velvet", origin: "Studio Zurich", care: "Dry Clean" },
-  "4": { id: 4, title: "Silk Blend", price: "$650", image: imgSilk, description: "The intersection of comfort and luxury. Light-catching fibers woven with surgical precision.", material: "Fine Silk Blend", origin: "Studio Zurich", care: "Hand Wash" },
+  "1": { id: 1, title: "Noir Kurta", price: "BDT 45,000", image: imgNoir, description: "A study in absolute black. Constructed from hand-spun Swiss cotton and silk blend, featuring architectural stitching and hidden fasteners.", material: "80% Cotton, 20% Silk", origin: "Studio Dhaka", care: "Professional Dry Clean Only" },
+  "2": { id: 2, title: "Sherwani", price: "BDT 120,000", image: imgSherwani, description: "Exquisite hand-embroidery meets radical modern silhouettes. A masterpiece of time and precision.", material: "Premium Raw Silk", origin: "Artisan Workshop", care: "Specialist Care" },
+  "3": { id: 3, title: "Crimson", price: "BDT 89,000", image: imgCrimson, description: "Deep pigments and structured velvet. A garment designed for presence and permanence.", material: "Silk Velvet", origin: "Studio Dhaka", care: "Dry Clean" },
+  "4": { id: 4, title: "Silk Blend", price: "BDT 65,000", image: imgSilk, description: "The intersection of comfort and luxury. Light-catching fibers woven with surgical precision.", material: "Fine Silk Blend", origin: "Studio Dhaka", care: "Hand Wash" },
   "5": { id: 5, title: "Bridal", price: "Enquiry", image: imgBridal, description: "Bespoke bridal couture. A collaborative journey between client and atelier to create a legacy piece.", material: "Custom Selection", origin: "Bespoke Atelier", care: "Legacy Preservation" },
-  "6": { id: 6, title: "Earth Classic", price: "$520", image: imgEarth, description: "Neutral tones derived from natural pigments. A timeless staple for the contemporary wardrobe.", material: "Linen & Wool", origin: "Studio Zurich", care: "Gentle Cycle" }
+  "6": { id: 6, title: "Earth Classic", price: "BDT 52,000", image: imgEarth, description: "Neutral tones derived from natural pigments. A timeless staple for the contemporary wardrobe.", material: "Linen & Wool", origin: "Studio Dhaka", care: "Gentle Cycle" }
 };
 
 export default function ProductPage({ params }: { params: { id: string } }) {
@@ -51,7 +52,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Details Side */}
-          <div className="lg:col-span-5 flex flex-col">
+          <motion.div 
+            className="lg:col-span-5 flex flex-col"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <div className="p-8 md:p-16 flex-grow space-y-16">
               {/* Header */}
               <div className="space-y-6">
@@ -112,7 +118,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 Enquire for Bespoke <ArrowDownRight className="w-6 h-6" />
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Technical Footer Row */}
@@ -121,7 +127,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <Globe className="w-6 h-6 stroke-[1px]" />
               <div className="space-y-4">
                 <span className="text-[10px] font-bold uppercase tracking-widest block">Logistics</span>
-                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Premium insured transit directly from our Zurich atelier to your residence.</p>
+                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Premium insured transit directly from our Dhaka atelier to your residence.</p>
               </div>
            </div>
            <div className="p-12 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col gap-8">

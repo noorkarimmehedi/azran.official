@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { ArrowUpRight, Instagram, Twitter, Mail, Menu, Globe, Clock, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +8,21 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      setTime(`${hours}:${minutes}`);
+    };
+
+    updateTime();
+    const intervalId = setInterval(updateTime, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-black selection:bg-black selection:text-white">
@@ -24,6 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/collection"><a className="hover:opacity-40 transition-opacity">Collection</a></Link>
             <Link href="/atelier"><a className="hover:opacity-40 transition-opacity">Atelier</a></Link>
             <Link href="/journal"><a className="hover:opacity-40 transition-opacity">Journal</a></Link>
+            <Link href="/booking"><a className="hover:opacity-40 transition-opacity">Booking</a></Link>
           </div>
 
           <div className="hidden md:flex col-span-3 border-l border-black items-center justify-center p-0">
@@ -46,7 +62,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     <Button variant="ghost" onClick={() => setIsOpen(false)}><ArrowUpRight className="w-6 h-6 rotate-45"/></Button>
                   </div>
                   <div className="flex-grow flex flex-col justify-center p-8 gap-8">
-                    {["Collection", "Atelier", "Journal"].map((item) => (
+                    {["Collection", "Atelier", "Journal", "Booking"].map((item) => (
                       <Link key={item} href={`/${item.toLowerCase()}`} onClick={() => setIsOpen(false)}>
                         <a className="text-5xl font-display font-bold uppercase hover:opacity-40 transition-all">{item}</a>
                       </Link>
@@ -81,10 +97,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-black bg-white">
         {/* Top Metadata Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 border-b border-black text-[9px] uppercase tracking-[0.3em] font-bold py-4 px-8 md:px-12">
-          <div className="flex items-center gap-2"><Globe className="w-3 h-3 stroke-[1.5px]"/> Zurich / World</div>
-          <div className="hidden md:flex items-center gap-2"><Clock className="w-3 h-3 stroke-[1.5px]"/> 14:02 CET</div>
+          <div className="flex items-center gap-2"><Globe className="w-3 h-3 stroke-[1.5px]"/> Dhaka / World</div>
+                              <div className="hidden md:flex items-center gap-2"><Clock className="w-3 h-3 stroke-[1.5px]"/> {time} BST</div>
           <div className="hidden md:flex items-center gap-2"><ShieldCheck className="w-3 h-3 stroke-[1.5px]"/> Secure Access</div>
-          <div className="text-right">Studio v.26</div>
+          <div className="text-right">Studio v.1.0</div>
         </div>
 
         {/* Main Grid Content */}
@@ -104,7 +120,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="md:col-span-3 border-b md:border-b-0 md:border-r border-black p-8 md:p-12 space-y-8">
             <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-30">Contact</span>
             <ul className="space-y-4 text-xs uppercase tracking-widest font-bold">
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Studio Zurich</a></li>
+              <li><a href="#" className="hover:opacity-40 transition-opacity block">Studio Dhaka</a></li>
               <li><a href="#" className="hover:opacity-40 transition-opacity block">Client Care</a></li>
               <li><a href="#" className="hover:opacity-40 transition-opacity block">Press Inquiries</a></li>
               <li><a href="#" className="hover:opacity-40 transition-opacity block">Careers</a></li>
@@ -123,7 +139,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <button className="text-[10px] uppercase tracking-[0.4em] font-bold hover:opacity-40 transition-opacity">Subscribe</button>
             </div>
             <p className="text-[10px] uppercase tracking-widest leading-relaxed text-muted-foreground max-w-sm">
-              Sign up to receive private invitations to upcoming collections and studio events in Zurich.
+              Sign up to receive private invitations to upcoming collections and studio events in Dhaka.
             </p>
           </div>
         </div>
@@ -151,12 +167,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Legal Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 p-8 md:px-12 md:py-8 gap-8 items-end">
-          <div className="text-[9px] uppercase tracking-[0.4em] font-bold opacity-30 leading-relaxed">
-            All images and content are property of Guzel Studio AG.<br/>
-            Registration No. CH-100.3.000.000-1.
+          <div className="text-[9px] uppercase tracking-[0.4em] font-bold leading-relaxed">
+            <div className="opacity-30">
+              All images and content are property of Guzel Studio AG.<br/>
+              Registration No. CH-100.3.000.000-1.
+            </div>
+            <div className="text-black">
+              Website designed and developed by <a href="https://api.whatsapp.com/send/?phone=8801733670129" target="_blank" rel="noopener noreferrer" className="font-bold underline">Arc Lab Technology</a>.
+            </div>
           </div>
           <div className="text-[9px] uppercase tracking-[0.4em] font-bold opacity-30 md:text-right">
-            © 2026 Designed in Zurich / Proudly Made in Switzerland
+            © 2026 Designed in Dhaka / Proudly Made in Bangladesh
           </div>
         </div>
       </footer>
