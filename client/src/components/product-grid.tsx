@@ -1,3 +1,9 @@
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowDownRight } from "lucide-react";
+import { useLocation } from "wouter";
+
+// Import images
 import imgNoir from "@assets/image_1768632448516.png";
 import imgSherwani from "@assets/image_1768632387917.png";
 import imgCrimson from "@assets/image_1768632401640.png";
@@ -15,6 +21,8 @@ const products = [
 ];
 
 export default function ProductGrid() {
+  const [, setLocation] = useLocation();
+
   return (
     <section className="bg-white">
       {/* Minimal Grid Header */}
@@ -31,7 +39,11 @@ export default function ProductGrid() {
       {/* Clean Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {products.map((p, i) => (
-          <div key={p.id} className={`group border-black p-8 flex flex-col transition-colors duration-500 hover:bg-neutral-50 border-b ${i % 3 !== 2 ? 'lg:border-r' : ''} ${i % 2 !== 1 ? 'md:border-r lg:border-r-0' : ''}`}>
+          <div 
+            key={p.id} 
+            onClick={() => setLocation(`/product/${p.id}`)}
+            className={`group border-black p-8 flex flex-col transition-colors duration-500 hover:bg-neutral-50 border-b cursor-pointer ${i % 3 !== 2 ? 'lg:border-r' : ''} ${i % 2 !== 1 ? 'md:border-r lg:border-r-0' : ''}`}
+          >
              <div className="flex justify-between items-start mb-12">
                 <span className="text-[10px] uppercase tracking-widest font-bold">Item {p.id.toString().padStart(2, '0')}</span>
                 <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{p.price}</span>
