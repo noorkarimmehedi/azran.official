@@ -35,11 +35,34 @@ export default defineConfig({
       plugins: [],
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js'
+      }
+    },
+    minify: 'esbuild',
+    sourcemap: false,
+    // Enable CSS code splitting
+    cssCodeSplit: true,
+    // Ensure proper handling of dynamic imports
+    dynamicImportVarsOptions: {
+      exclude: []
+    }
   },
+  define: {
+    'process.env': process.env
+  },
+  preview: {
+    port: 3000,
+    strictPort: true,
+  },
+  root: path.resolve(import.meta.dirname, "client"),
   server: {
     host: "0.0.0.0",
     allowedHosts: true,
