@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight, ArrowDownRight, Share2, Heart, ShieldCheck, Globe, Truck } from "lucide-react";
+import { ArrowLeft, ArrowDownRight, ShieldCheck, Globe, Truck, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout";
 import imgNoir from "@assets/image_1768632448516.png";
@@ -21,78 +22,92 @@ const products = {
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = products[params.id as keyof typeof products];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [params.id]);
+
   if (!product) return <div>Product not found</div>;
 
   return (
     <Layout>
       <div className="bg-white min-h-screen">
-        {/* Navigation Bar */}
-        <div className="border-b border-black grid grid-cols-2 md:grid-cols-12 h-16">
-          <div className="col-span-1 md:col-span-3 border-r border-black flex items-center px-8">
-            <Link href="/">
-              <a className="text-[10px] font-bold uppercase tracking-[0.3em] flex items-center gap-4 hover:opacity-40 transition-opacity">
-                <ArrowLeft className="w-4 h-4" /> Back to Archive
-              </a>
-            </Link>
-          </div>
-          <div className="hidden md:flex col-span-6 border-r border-black items-center justify-center">
-            <span className="text-[10px] font-bold uppercase tracking-[0.4em] opacity-40">Drop 001 / Series {product.id.toString().padStart(3, '0')}</span>
-          </div>
-          <div className="col-span-1 md:col-span-3 flex items-center justify-between px-8">
-             <Share2 className="w-4 h-4 cursor-pointer hover:opacity-40" />
-             <Heart className="w-4 h-4 cursor-pointer hover:opacity-40" />
-          </div>
-        </div>
-
-        {/* Main Product Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 min-h-[calc(100vh-144px)] border-b border-black">
-          {/* Visual Column */}
-          <div className="md:col-span-7 border-r border-black relative bg-neutral-50 overflow-hidden group">
-            <img 
-              src={product.image} 
-              alt={product.title} 
-              className="w-full h-full object-cover grayscale brightness-95 group-hover:grayscale-0 transition-all duration-1000"
-            />
-            {/* Swiss Grid Overlay */}
-            <div className="absolute inset-0 pointer-events-none grid grid-cols-3 opacity-10">
-              <div className="border-r border-black"></div>
-              <div className="border-r border-black"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-black">
+          {/* Visual Side - Sticky on Desktop */}
+          <div className="lg:col-span-7 border-b lg:border-b-0 lg:border-r border-black bg-neutral-50 relative">
+            <div className="lg:sticky lg:top-20 overflow-hidden h-[70vh] lg:h-[calc(100vh-80px)] group">
+              <img 
+                src={product.image} 
+                alt={product.title} 
+                className="w-full h-full object-cover grayscale brightness-95 group-hover:grayscale-0 transition-all duration-1000"
+              />
+              <div className="absolute top-8 left-8">
+                <Link href="/">
+                  <a className="w-12 h-12 rounded-full border border-black flex items-center justify-center bg-white/80 backdrop-blur-sm hover:bg-black hover:text-white transition-all">
+                    <ArrowLeft className="w-5 h-5" />
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
 
-          {/* Details Column */}
-          <div className="md:col-span-5 flex flex-col justify-between">
-            <div className="p-8 md:p-16 space-y-12">
-              <div className="space-y-4">
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] opacity-40">Guzel / Studio</span>
-                <h1 className="text-6xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none">
+          {/* Details Side */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="p-8 md:p-16 flex-grow space-y-16">
+              {/* Header */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-center text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">
+                  <span>Guzel / Studio</span>
+                  <span>S. {product.id.toString().padStart(3, '0')}</span>
+                </div>
+                <h1 className="text-6xl md:text-8xl font-display font-medium uppercase tracking-tighter leading-[0.85]">
                   {product.title}
                 </h1>
+                <p className="text-2xl font-display italic">{product.price}</p>
               </div>
 
+              {/* Description */}
               <div className="space-y-8">
-                <div className="flex justify-between items-end border-b border-black pb-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Price</span>
-                  <span className="text-2xl font-display">{product.price}</span>
-                </div>
-                <p className="text-sm uppercase leading-loose tracking-widest text-muted-foreground">
+                <div className="h-[1px] w-12 bg-black"></div>
+                <p className="text-sm uppercase leading-relaxed tracking-widest text-muted-foreground max-w-md">
                   {product.description}
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 pt-8">
-                <div className="space-y-2">
-                  <span className="text-[9px] font-bold uppercase tracking-widest opacity-40 block">Material</span>
-                  <span className="text-[11px] font-bold uppercase tracking-widest block">{product.material}</span>
+              {/* Specifications Grid */}
+              <div className="grid grid-cols-2 gap-x-12 gap-y-12 pt-8 border-t border-black/10">
+                <div className="space-y-3">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Composition</span>
+                  <span className="text-xs font-medium uppercase tracking-widest block">{product.material}</span>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-[9px] font-bold uppercase tracking-widest opacity-40 block">Provenance</span>
-                  <span className="text-[11px] font-bold uppercase tracking-widest block">{product.origin}</span>
+                <div className="space-y-3">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Origin</span>
+                  <span className="text-xs font-medium uppercase tracking-widest block">{product.origin}</span>
+                </div>
+                <div className="space-y-3">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Care</span>
+                  <span className="text-xs font-medium uppercase tracking-widest block">{product.care}</span>
+                </div>
+                <div className="space-y-3">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Shipping</span>
+                  <span className="text-xs font-medium uppercase tracking-widest block">Worldwide</span>
+                </div>
+              </div>
+
+              {/* Selector Mockup */}
+              <div className="pt-12 space-y-6">
+                <div className="flex justify-between items-center border border-black p-4">
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Select Size</span>
+                  <div className="flex gap-4 text-xs font-bold">
+                    {['S', 'M', 'L', 'XL'].map(s => (
+                      <span key={s} className="cursor-pointer hover:opacity-40 transition-opacity uppercase">{s}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-0 border-t border-black">
+            {/* Sticky/Bottom Action */}
+            <div className="border-t border-black">
               <Button className="w-full h-24 rounded-none bg-black text-white text-xl uppercase font-bold tracking-[0.2em] hover:bg-neutral-900 transition-all flex items-center justify-center gap-4">
                 Enquire for Bespoke <ArrowDownRight className="w-6 h-6" />
               </Button>
@@ -100,27 +115,27 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        {/* Technical Data Grid */}
+        {/* Technical Footer Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 border-b border-black">
-           <div className="p-12 border-b md:border-b-0 md:border-r border-black flex flex-col items-center text-center gap-6">
-              <Globe className="w-8 h-8 stroke-[1px]" />
-              <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest block">Global Shipping</span>
-                <p className="text-[10px] opacity-40 uppercase tracking-widest leading-relaxed">Secured courier transit from Zurich to your location.</p>
+           <div className="p-12 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col gap-8">
+              <Globe className="w-6 h-6 stroke-[1px]" />
+              <div className="space-y-4">
+                <span className="text-[10px] font-bold uppercase tracking-widest block">Logistics</span>
+                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Premium insured transit directly from our Zurich atelier to your residence.</p>
               </div>
            </div>
-           <div className="p-12 border-b md:border-b-0 md:border-r border-black flex flex-col items-center text-center gap-6">
-              <ShieldCheck className="w-8 h-8 stroke-[1px]" />
-              <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest block">Studio Guarantee</span>
-                <p className="text-[10px] opacity-40 uppercase tracking-widest leading-relaxed">Lifetime structural support for every bespoke garment.</p>
+           <div className="p-12 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col gap-8">
+              <ShieldCheck className="w-6 h-6 stroke-[1px]" />
+              <div className="space-y-4">
+                <span className="text-[10px] font-bold uppercase tracking-widest block">Authentication</span>
+                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Each garment is issued with a unique digital certificate of authenticity.</p>
               </div>
            </div>
-           <div className="p-12 flex flex-col items-center text-center gap-6">
-              <Truck className="w-8 h-8 stroke-[1px]" />
-              <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest block">Bespoke Lead Time</span>
-                <p className="text-[10px] opacity-40 uppercase tracking-widest leading-relaxed">Estimated 4-8 weeks for personalized construction.</p>
+           <div className="p-12 md:p-16 flex flex-col gap-8">
+              <Truck className="w-6 h-6 stroke-[1px]" />
+              <div className="space-y-4">
+                <span className="text-[10px] font-bold uppercase tracking-widest block">Process</span>
+                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Every piece is hand-finished. Bespoke adjustments require 14 business days.</p>
               </div>
            </div>
         </div>
