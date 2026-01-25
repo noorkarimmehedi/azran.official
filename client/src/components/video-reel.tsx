@@ -106,7 +106,7 @@ export default function VideoReel() {
                 <div className="flex-none w-[calc(50vw-42.5vw)] md:hidden" />
             </div>
 
-            <div className="flex gap-4 mt-8 md:mt-16 items-center opacity-30 md:hidden">
+            <div className="flex gap-4 mt-8 md:mt-16 items-center justify-center self-center opacity-30 md:hidden">
                 <div className="w-12 h-px bg-black" />
                 <span className="text-[8px] uppercase tracking-[0.5em] font-bold">Swipe to Explore</span>
                 <div className="w-12 h-px bg-black" />
