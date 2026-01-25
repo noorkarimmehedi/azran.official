@@ -35,7 +35,7 @@ const CATEGORIES = [
 export default function Categories() {
     return (
         <section className="bg-brand-ivory border-t border-black/5 py-24 md:py-48">
-            <div className="max-w-[1440px] mx-auto px-8 md:px-16 mb-16 md:mb-24 text-center md:text-left">
+            <div className="max-w-[1440px] mx-auto px-8 md:px-16 mb-16 md:mb-24 text-left">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ export default function Categories() {
                     <h2 className="text-5xl md:text-8xl font-display font-light uppercase tracking-tight text-black italic">
                         The Maison <span className="not-italic">Archives</span>
                     </h2>
-                    <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium text-black/40 max-w-sm ml-auto md:ml-0 md:mr-auto leading-loose">
+                    <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium text-black/40 max-w-sm mr-auto leading-loose">
                         Explore our curated selection of bespoke evening wear, precision tailoring, and heritage craftsmanship.
                     </p>
                 </motion.div>
