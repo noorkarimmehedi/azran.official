@@ -4,23 +4,23 @@ import { ArrowDownRight, ShoppingBag } from "lucide-react";
 const REEL_VIDEOS = [
     {
         id: 1,
-        url: "https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-on-a-pavement-42866-large.mp4",
+        url: "/AQNhkbOEBBi0CA06rklQbu650sd1ivbQoKkWyhi9KQSb_hDdSHI7iEjpB1REk9sYaWIaZVWC6jJpiGWYD4xDh-LeHr2AfZGlBWOiy8wl21N52Q.mp4",
         title: "Silk Taffeta Noir",
-        price: "$1,850",
+        price: "Enquire",
         category: "Bespoke Evening Gown"
     },
     {
         id: 2,
-        url: "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-lights-walking-on-the-street-42867-large.mp4",
+        url: "/AQP5zFP4EUQGTXa_l6hbKQjJKjqOpzSiH4NO0VMdEi8QxHLISI_K6YOKeB81c2UnjcbxqWkSrrdUjesjr0no7vX-hBfqSZzQBPoyLYnnERFkgQ.mp4",
         title: "Crimson Velvet",
-        price: "$2,200",
+        price: "Enquire",
         category: "Couture Gala Piece"
     },
     {
         id: 3,
-        url: "https://assets.mixkit.co/videos/preview/mixkit-model-walking-on-the-catwalk-14400-large.mp4",
+        url: "/AQPdBUy3uo1uEpvB96NfzsXDIR-QXPFF9bMRVlkjS7nt9MLHE0wL59kQjpD9xZ-kTFIPo8tsYBnplaVvJax1FR1XEYKk2js2Yhz49j7q1Jh-ZQ.mp4",
         title: "Ivory Organza",
-        price: "$1,600",
+        price: "Enquire",
         category: "Bridal Atelier"
     }
 ];
