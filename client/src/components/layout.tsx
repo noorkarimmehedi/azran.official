@@ -45,7 +45,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex-1 flex items-center justify-end gap-6 md:gap-10">
             <div className="md:hidden">
               <Link href="/cart">
-                <a className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-70 hover:opacity-100 transition-opacity">Cart</a>
+                <Button variant="ghost" className="h-12 px-2 flex items-center justify-center rounded-none group hover:bg-transparent">
+                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-70 group-hover:opacity-100 transition-opacity">Cart</span>
+                </Button>
               </Link>
             </div>
 
