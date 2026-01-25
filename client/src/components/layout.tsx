@@ -162,7 +162,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Brand Col */}
           <div className="md:col-span-4 space-y-8">
             <span className="text-2xl font-display font-light uppercase tracking-widest text-brand-gold">AZRAN</span>
-            <p className="text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-medium leading-[1.8] md:leading-[2] text-black/50 md:max-w-xs">
+            <p className="text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] font-medium leading-[1.8] md:leading-[2.4] text-black/50 md:max-w-md md:text-balance leading-relaxed">
               Defining the future of luxury couture through Swiss modernist principles and master craftsmanship.
             </p>
             <div className="flex gap-6">
