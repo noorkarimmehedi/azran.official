@@ -34,7 +34,26 @@ const CATEGORIES = [
 
 export default function Categories() {
     return (
-        <section className="bg-brand-ivory border-t border-black/5">
+        <section className="bg-brand-ivory border-t border-black/5 py-24 md:py-48">
+            <div className="max-w-[1440px] mx-auto px-8 md:px-16 mb-16 md:mb-24 text-center md:text-left">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="space-y-6"
+                >
+                    <span className="text-[10px] uppercase tracking-[0.6em] font-medium text-brand-gold block">
+                        Our Universe
+                    </span>
+                    <h2 className="text-5xl md:text-8xl font-display font-light uppercase tracking-tight text-black italic">
+                        The Maison <span className="not-italic">Archives</span>
+                    </h2>
+                    <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium text-black/40 max-w-sm ml-auto md:ml-0 md:mr-auto leading-loose">
+                        Explore our curated selection of bespoke evening wear, precision tailoring, and heritage craftsmanship.
+                    </p>
+                </motion.div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                 {CATEGORIES.map((cat, idx) => (
                     <motion.div
