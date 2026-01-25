@@ -31,120 +31,192 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
   return (
     <Layout>
-      <div className="bg-white min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-black">
-          {/* Visual Side - Sticky on Desktop */}
-          <div className="lg:col-span-7 border-b lg:border-b-0 lg:border-r border-black bg-neutral-50 relative">
-            <div className="lg:sticky lg:top-20 overflow-hidden h-[70vh] lg:h-[calc(100vh-80px)] group">
-              <img 
-                src={product.image} 
-                alt={product.title} 
-                className="w-full h-full object-cover grayscale brightness-95 group-hover:grayscale-0 transition-all duration-1000"
+      <div className="bg-brand-ivory min-h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-12">
+          {/* Visual Side - Immersive & Premium */}
+          <div className="lg:col-span-7 relative bg-neutral-100 overflow-hidden">
+            <div className="lg:sticky lg:top-0 h-[80vh] lg:h-screen group">
+              <motion.img
+                initial={{ scale: 1.1, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                src={product.image}
+                alt={product.title}
+                className="w-full h-full object-cover grayscale brightness-75 contrast-105 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-[2s]"
               />
-              <div className="absolute top-8 left-8">
+
+              {/* Gold Frame Detail overlay */}
+              <div className="absolute inset-8 md:inset-16 border border-brand-gold/20 pointer-events-none" />
+
+              {/* Back Link */}
+              <div className="absolute top-12 left-12 z-20">
                 <Link href="/">
-                  <a className="w-12 h-12 rounded-full border border-black flex items-center justify-center bg-white/80 backdrop-blur-sm hover:bg-black hover:text-white transition-all">
-                    <ArrowLeft className="w-5 h-5" />
+                  <a className="group flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-white font-bold hover:text-brand-gold transition-colors">
+                    <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-2" />
+                    Back to Collection
                   </a>
                 </Link>
+              </div>
+
+              {/* Vertical Label */}
+              <div className="absolute bottom-12 left-12 z-20 hidden md:block opacity-40">
+                <div className="rotate-[-90deg] origin-left flex items-center gap-8">
+                  <span className="text-[9px] uppercase tracking-[0.6em] font-bold text-white whitespace-nowrap">Azran Studio / Atelier</span>
+                  <div className="w-12 h-px bg-white/40" />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Details Side */}
-          <motion.div 
-            className="lg:col-span-5 flex flex-col"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          {/* Details Side - Editorial Typography */}
+          <motion.div
+            className="lg:col-span-5 flex flex-col bg-brand-ivory"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="p-8 md:p-16 flex-grow space-y-16">
-              {/* Header */}
-              <div className="space-y-6">
-                <div className="flex justify-between items-center text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">
-                  <span>Guzel / Studio</span>
-                  <span>S. {product.id.toString().padStart(3, '0')}</span>
+            <div className="p-8 md:p-20 flex-grow space-y-20">
+              {/* Product Info */}
+              <div className="space-y-10">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] uppercase tracking-[0.6em] font-medium text-brand-gold">
+                    Collection 2026 / Archive
+                  </span>
+                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-30 italic">
+                    REF.{product.id.toString().padStart(4, '0')}
+                  </span>
                 </div>
-                <h1 className="text-6xl md:text-8xl font-display font-medium uppercase tracking-tighter leading-[0.85]">
+
+                <h1 className="text-6xl md:text-8xl font-display font-light uppercase tracking-tight leading-none text-black">
                   {product.title}
                 </h1>
-                <p className="text-2xl font-display italic">{product.price}</p>
+
+                <div className="flex items-center gap-6">
+                  <span className="text-3xl font-display font-light text-black italic">{product.price}</span>
+                  <div className="h-px flex-grow bg-black/5" />
+                </div>
               </div>
 
-              {/* Description */}
+              {/* Manifesto Description */}
               <div className="space-y-8">
-                <div className="h-[1px] w-12 bg-black"></div>
-                <p className="text-sm uppercase leading-relaxed tracking-widest text-muted-foreground max-w-md">
+                <p className="text-sm md:text-base uppercase leading-loose tracking-[0.15em] text-black/60 max-w-md">
                   {product.description}
                 </p>
-              </div>
-
-              {/* Specifications Grid */}
-              <div className="grid grid-cols-2 gap-x-12 gap-y-12 pt-8 border-t border-black/10">
-                <div className="space-y-3">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Composition</span>
-                  <span className="text-xs font-medium uppercase tracking-widest block">{product.material}</span>
-                </div>
-                <div className="space-y-3">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Origin</span>
-                  <span className="text-xs font-medium uppercase tracking-widest block">{product.origin}</span>
-                </div>
-                <div className="space-y-3">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Care</span>
-                  <span className="text-xs font-medium uppercase tracking-widest block">{product.care}</span>
-                </div>
-                <div className="space-y-3">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 block">Shipping</span>
-                  <span className="text-xs font-medium uppercase tracking-widest block">Worldwide</span>
-                </div>
-              </div>
-
-              {/* Selector Mockup */}
-              <div className="pt-12 space-y-6">
-                <div className="flex justify-between items-center border border-black p-4">
-                  <span className="text-[10px] font-bold uppercase tracking-widest">Select Size</span>
-                  <div className="flex gap-4 text-xs font-bold">
-                    {['S', 'M', 'L', 'XL'].map(s => (
-                      <span key={s} className="cursor-pointer hover:opacity-40 transition-opacity uppercase">{s}</span>
-                    ))}
+                <div className="flex gap-12 pt-4">
+                  <div className="flex flex-col">
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-brand-gold mb-1">Origin</span>
+                    <span className="text-[10px] uppercase tracking-widest font-medium">Handcrafted in Dhaka</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-brand-gold mb-1">Time</span>
+                    <span className="text-[10px] uppercase tracking-widest font-medium">14 Business Days</span>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Sticky/Bottom Action */}
-            <div className="border-t border-black">
-              <Button className="w-full h-24 rounded-none bg-black text-white text-xl uppercase font-bold tracking-[0.2em] hover:bg-neutral-900 transition-all flex items-center justify-center gap-4">
-                Enquire for Bespoke <ArrowDownRight className="w-6 h-6" />
-              </Button>
+              {/* Composition & Care Details */}
+              <div className="grid grid-cols-2 gap-x-12 gap-y-12 py-12 border-y border-black/5">
+                {[
+                  { label: "Material", val: product.material },
+                  { label: "Care", val: product.care },
+                  { label: "Shipping", val: "Complimentary Express" },
+                  { label: "Auth", val: "NFC Verified" }
+                ].map((item, i) => (
+                  <div key={i} className="space-y-2">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.4em] opacity-30 block">{item.label}</span>
+                    <span className="text-[10px] font-medium uppercase tracking-widest block text-black/80">{item.val}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Size Selector - Luxury Style */}
+              <div className="space-y-8">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold">Select Dimension</span>
+                  <button className="text-[9px] uppercase tracking-widest font-bold underline opacity-40 hover:opacity-100 transition-opacity">Size Guide</button>
+                </div>
+                <div className="flex gap-4">
+                  {['S', 'M', 'L', 'XL', 'Custom'].map(s => (
+                    <button
+                      key={s}
+                      className="flex-1 h-14 border border-black/5 hover:border-brand-gold transition-all flex items-center justify-center text-[10px] uppercase tracking-[0.4em] font-bold text-black/40 hover:text-black hover:bg-white/50"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Premium Call to Action */}
+              <div className="pt-8 space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Button className="h-16 rounded-none bg-transparent border border-black/20 text-black text-[10px] uppercase font-bold tracking-[0.4em] hover:bg-black hover:text-white transition-all flex items-center justify-center gap-4 group">
+                    Add to Cart
+                  </Button>
+                  <Button className="h-16 rounded-none bg-black text-white text-[10px] uppercase font-bold tracking-[0.4em] hover:bg-brand-gold transition-all flex items-center justify-center gap-4 group">
+                    Buy it Now
+                    <ArrowDownRight className="w-5 h-5 stroke-[1px] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </Button>
+                </div>
+                <p className="text-center text-[9px] uppercase tracking-widest text-black/30 font-medium">
+                  Inclusive of VAT and Insured Global Freight
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Technical Footer Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border-b border-black">
-           <div className="p-12 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col gap-8">
-              <Globe className="w-6 h-6 stroke-[1px]" />
+        {/* YOU MAY ALSO LIKE SECTION */}
+        <section className="py-24 md:py-48 px-0 border-t border-black/5 bg-brand-ivory">
+          <div className="max-w-[1440px] mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 text-center md:text-left px-8 md:px-16">
               <div className="space-y-4">
-                <span className="text-[10px] font-bold uppercase tracking-widest block">Logistics</span>
-                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Premium insured transit directly from our Dhaka atelier to your residence.</p>
+                <span className="text-[10px] uppercase tracking-[0.6em] font-medium text-brand-gold block">Curated Selection</span>
+                <h2 className="text-4xl md:text-6xl font-display font-light uppercase tracking-tight text-black italic">
+                  You may also <span className="not-italic">Like</span>
+                </h2>
               </div>
-           </div>
-           <div className="p-12 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col gap-8">
-              <ShieldCheck className="w-6 h-6 stroke-[1px]" />
-              <div className="space-y-4">
-                <span className="text-[10px] font-bold uppercase tracking-widest block">Authentication</span>
-                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Each garment is issued with a unique digital certificate of authenticity.</p>
-              </div>
-           </div>
-           <div className="p-12 md:p-16 flex flex-col gap-8">
-              <Truck className="w-6 h-6 stroke-[1px]" />
-              <div className="space-y-4">
-                <span className="text-[10px] font-bold uppercase tracking-widest block">Process</span>
-                <p className="text-[10px] opacity-40 uppercase tracking-[0.2em] leading-loose">Every piece is hand-finished. Bespoke adjustments require 14 business days.</p>
-              </div>
-           </div>
-        </div>
+              <Link href="/">
+                <a className="text-[10px] uppercase tracking-[0.4em] font-bold border-b border-black/20 pb-2 hover:text-brand-gold hover:border-brand-gold transition-all">
+                  View Full Archive
+                </a>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
+              {Object.values(products)
+                .filter(p => p.id.toString() !== params.id)
+                .slice(0, 4)
+                .map((p, i) => (
+                  <motion.div
+                    key={p.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="group"
+                  >
+                    <Link href={`/product/${p.id}`}>
+                      <a className="block space-y-6">
+                        <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100 shadow-sm">
+                          <img
+                            src={p.image}
+                            alt={p.title}
+                            className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.5s]"
+                          />
+                          <div className="absolute inset-0 bg-black/5 group-hover:opacity-0 transition-opacity" />
+                        </div>
+                        <div className="flex justify-between items-baseline px-4 md:px-8">
+                          <h3 className="text-lg md:text-xl font-display font-light uppercase tracking-tight text-black">{p.title}</h3>
+                          <span className="text-[9px] uppercase tracking-widest text-brand-gold font-bold">{p.price.split(' ')[1]}</span>
+                        </div>
+                      </a>
+                    </Link>
+                  </motion.div>
+                ))}
+            </div>
+          </div>
+        </section>
       </div>
     </Layout>
   );

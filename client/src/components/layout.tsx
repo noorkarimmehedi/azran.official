@@ -25,55 +25,115 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black selection:bg-black selection:text-white">
+    <div className="min-h-screen flex flex-col bg-brand-ivory text-black selection:bg-brand-gold selection:text-white">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b border-black bg-white/90 backdrop-blur-sm">
-        <div className="grid grid-cols-2 md:grid-cols-12 h-16 md:h-20">
-          <div className="col-span-1 md:col-span-3 border-r border-black flex items-center px-6 md:px-12">
+      <nav className="sticky top-0 z-50 w-full border-b border-black/5 bg-brand-ivory/80 backdrop-blur-md transition-all duration-300">
+        <div className="flex h-20 md:h-24 items-center justify-between px-8 md:px-16">
+          <div className="flex-1 hidden md:flex items-center gap-10 text-[10px] uppercase tracking-[0.3em] font-medium opacity-70">
+            <Link href="/collection"><a className="hover:text-brand-gold transition-colors">Collection</a></Link>
+            <Link href="/atelier"><a className="hover:text-brand-gold transition-colors">Atelier</a></Link>
+          </div>
+
+          <div className="flex items-center justify-center">
             <Link href="/">
-              <a className="text-xl md:text-2xl font-display font-bold uppercase tracking-tighter">Guzel</a>
+              <a className="text-3xl md:text-4xl font-display font-light uppercase tracking-[0.1em] text-black">
+                AZRAN
+              </a>
             </Link>
           </div>
-          
-          <div className="hidden md:flex col-span-6 items-center justify-center gap-12 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <Link href="/collection"><a className="hover:opacity-40 transition-opacity">Collection</a></Link>
-            <Link href="/atelier"><a className="hover:opacity-40 transition-opacity">Atelier</a></Link>
-            <Link href="/journal"><a className="hover:opacity-40 transition-opacity">Journal</a></Link>
-            <Link href="/booking"><a className="hover:opacity-40 transition-opacity">Booking</a></Link>
-          </div>
 
-          <div className="hidden md:flex col-span-3 border-l border-black items-center justify-center p-0">
-            <Button variant="ghost" className="w-full h-full rounded-none text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-black hover:text-white transition-all">
-              Book Fitting
+          <div className="flex-1 flex items-center justify-end gap-6 md:gap-10">
+            <div className="md:hidden">
+              <Link href="/cart">
+                <a className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-70 hover:opacity-100 transition-opacity">Cart</a>
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center gap-10 text-[10px] uppercase tracking-[0.3em] font-medium opacity-70">
+              <Link href="/journal"><a className="hover:text-brand-gold transition-colors">Journal</a></Link>
+              <Link href="/booking"><a className="hover:text-brand-gold transition-colors">Booking</a></Link>
+
+            </div>
+
+            <Button variant="ghost" className="hidden md:flex h-12 px-8 rounded-none border border-black/10 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-black hover:text-white transition-all">
+              Private Fitting
             </Button>
-          </div>
 
-          <div className="md:hidden flex items-center justify-end px-6">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-none border border-black">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-full bg-white border-l border-black p-0">
-                <div className="flex flex-col h-full">
-                  <div className="p-8 border-b border-black flex justify-between items-center">
-                    <span className="font-display font-bold text-2xl uppercase">Guzel</span>
-                    <Button variant="ghost" onClick={() => setIsOpen(false)}><ArrowUpRight className="w-6 h-6 rotate-45"/></Button>
-                  </div>
-                  <div className="flex-grow flex flex-col justify-center p-8 gap-8">
-                    {["Collection", "Atelier", "Journal", "Booking"].map((item) => (
-                      <Link key={item} href={`/${item.toLowerCase()}`} onClick={() => setIsOpen(false)}>
-                        <a className="text-5xl font-display font-bold uppercase hover:opacity-40 transition-all">{item}</a>
-                      </Link>
-                    ))}
-                  </div>
-                  <Button className="w-full h-24 rounded-none bg-black text-white text-xl uppercase font-bold tracking-widest">
-                    Book Fitting
+            <div className="md:hidden">
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="group rounded-none w-auto h-12 flex items-center justify-center px-2">
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-70 group-hover:opacity-100 transition-opacity">Menu</span>
                   </Button>
-                </div>
-              </SheetContent>
-            </Sheet>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-full h-full bg-brand-ivory border-none p-0 overflow-hidden [&>button]:hidden">
+                  {/* Background Branding */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none z-0">
+                    <h2 className="text-[40vw] font-display font-light uppercase tracking-tighter rotate-90 leading-none">
+                      AZRAN
+                    </h2>
+                  </div>
+
+                  <div className="flex flex-col h-full relative z-10 p-8 md:p-24 justify-between">
+                    {/* Header */}
+                    <div className="flex justify-between items-center">
+                      <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-brand-gold">Menu</span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setIsOpen(false)}
+                        className="rounded-none hover:bg-black hover:text-white transition-all border border-black/5"
+                      >
+                        <div className="relative w-6 h-6">
+                          <div className="absolute top-1/2 left-1/2 w-4 h-[1px] bg-current -translate-x-1/2 rotate-45" />
+                          <div className="absolute top-1/2 left-1/2 w-4 h-[1px] bg-current -translate-x-1/2 -rotate-45" />
+                        </div>
+                      </Button>
+                    </div>
+
+                    {/* Navigation Links */}
+                    <div className="flex flex-col gap-4 md:gap-10 py-12">
+                      {["Collection", "Atelier", "Journal", "Booking"].map((item, idx) => (
+                        <motion.div
+                          key={item}
+                          initial={{ opacity: 0, x: 50 }}
+                          animate={isOpen ? { opacity: 1, x: 0 } : {}}
+                          transition={{
+                            duration: 0.8,
+                            delay: idx * 0.1,
+                            ease: [0.22, 1, 0.36, 1]
+                          }}
+                        >
+                          <Link href={`/${item.toLowerCase()}`} onClick={() => setIsOpen(false)}>
+                            <a className="group flex items-baseline gap-4 md:gap-6">
+                              <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-gold opacity-40 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
+                              <span className="text-5xl md:text-8xl font-display font-light uppercase tracking-tight text-black group-hover:translate-x-4 transition-transform duration-500">
+                                {item}
+                              </span>
+                            </a>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Footer Info */}
+                    <div className="space-y-12">
+                      <div className="h-px w-12 bg-black/10" />
+                      <div className="flex justify-between items-end">
+                        <div className="space-y-4">
+                          <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-brand-gold block">Dhaka Studio</span>
+                          <span className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-40 block">{time} BST</span>
+                        </div>
+                        <div className="flex flex-col items-end gap-2">
+                          <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-brand-gold">Archive</span>
+                          <span className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-40">Vol. 2026</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </nav>
@@ -94,90 +154,75 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Luxury Swiss Grid Footer */}
-      <footer className="border-t border-black bg-white">
-        {/* Top Metadata Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 border-b border-black text-[9px] uppercase tracking-[0.3em] font-bold py-4 px-8 md:px-12">
-          <div className="flex items-center gap-2"><Globe className="w-3 h-3 stroke-[1.5px]"/> Dhaka / World</div>
-                              <div className="hidden md:flex items-center gap-2"><Clock className="w-3 h-3 stroke-[1.5px]"/> {time} BST</div>
-          <div className="hidden md:flex items-center gap-2"><ShieldCheck className="w-3 h-3 stroke-[1.5px]"/> Secure Access</div>
-          <div className="text-right">Studio v.1.0</div>
-        </div>
-
+      <footer className="border-t border-black/5 bg-brand-ivory text-black pt-24">
         {/* Main Grid Content */}
-        <div className="grid grid-cols-1 md:grid-cols-12 border-b border-black">
+        <div className="grid grid-cols-1 md:grid-cols-12 max-w-[1440px] mx-auto px-8 md:px-16 gap-16 mb-24">
+          {/* Brand Col */}
+          <div className="md:col-span-4 space-y-8">
+            <span className="text-2xl font-display font-light uppercase tracking-widest text-brand-gold">AZRAN</span>
+            <p className="text-[10px] uppercase tracking-[0.3em] leading-loose text-black/50 max-w-xs">
+              Defining the future of luxury couture through Swiss modernist principles and master craftsmanship.
+            </p>
+            <div className="flex gap-6">
+              <Instagram className="w-4 h-4 stroke-[1px] hover:text-brand-gold cursor-pointer transition-colors" />
+              <Twitter className="w-4 h-4 stroke-[1px] hover:text-brand-gold cursor-pointer transition-colors" />
+              <Mail className="w-4 h-4 stroke-[1px] hover:text-brand-gold cursor-pointer transition-colors" />
+            </div>
+          </div>
+
           {/* Navigation Column */}
-          <div className="md:col-span-3 border-b md:border-b-0 md:border-r border-black p-8 md:p-12 space-y-8">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-30">Explore</span>
-            <ul className="space-y-4 text-xs uppercase tracking-widest font-bold">
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Collections</a></li>
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Bespoke Fitting</a></li>
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Fabric Archive</a></li>
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Journal</a></li>
+          <div className="md:col-span-2 space-y-6">
+            <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-brand-gold block">Explore</span>
+            <ul className="space-y-4 text-[10px] uppercase tracking-widest font-medium text-black/60">
+              <li><a href="#" className="hover:text-black transition-colors block">Collections</a></li>
+              <li><a href="#" className="hover:text-black transition-colors block">Bespoke Fitting</a></li>
+              <li><a href="#" className="hover:text-black transition-colors block">Fabric Archive</a></li>
+              <li><a href="#" className="hover:text-black transition-colors block">Journal</a></li>
             </ul>
           </div>
 
           {/* Contact Column */}
-          <div className="md:col-span-3 border-b md:border-b-0 md:border-r border-black p-8 md:p-12 space-y-8">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-30">Contact</span>
-            <ul className="space-y-4 text-xs uppercase tracking-widest font-bold">
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Studio Dhaka</a></li>
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Client Care</a></li>
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Press Inquiries</a></li>
-              <li><a href="#" className="hover:opacity-40 transition-opacity block">Careers</a></li>
+          <div className="md:col-span-2 space-y-6">
+            <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-brand-gold block">Maison</span>
+            <ul className="space-y-4 text-[10px] uppercase tracking-widest font-medium text-black/60">
+              <li><a href="#" className="hover:text-black transition-colors block">Studio Dhaka</a></li>
+              <li><a href="#" className="hover:text-black transition-colors block">Client Care</a></li>
+              <li><a href="#" className="hover:text-black transition-colors block">Press</a></li>
+              <li><a href="#" className="hover:text-black transition-colors block">Legal</a></li>
             </ul>
           </div>
 
-          {/* Newsletter / Statement Column */}
-          <div className="md:col-span-6 p-8 md:p-12 flex flex-col justify-between">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-30 mb-8">Newsletter</span>
-            <div className="flex border-b border-black pb-4 mb-4">
-              <input 
-                type="email" 
-                placeholder="EMAIL ADDRESS" 
-                className="bg-transparent border-none outline-none flex-grow text-[10px] uppercase tracking-widest font-bold placeholder:opacity-30"
+          {/* Newsletter Column */}
+          <div className="md:col-span-4 space-y-6">
+            <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-brand-gold block">Newsletter</span>
+            <div className="flex border-b border-black/10 pb-4">
+              <input
+                type="email"
+                placeholder="JOIN THE ATELIER"
+                className="bg-transparent border-none outline-none flex-grow text-[9px] uppercase tracking-[0.4em] font-medium placeholder:text-black/20"
               />
-              <button className="text-[10px] uppercase tracking-[0.4em] font-bold hover:opacity-40 transition-opacity">Subscribe</button>
+              <button className="text-[9px] uppercase tracking-[0.4em] font-bold hover:text-brand-gold transition-colors">Join</button>
             </div>
-            <p className="text-[10px] uppercase tracking-widest leading-relaxed text-muted-foreground max-w-sm">
-              Sign up to receive private invitations to upcoming collections and studio events in Dhaka.
-            </p>
-          </div>
-        </div>
-
-        {/* Social Bar */}
-        <div className="grid grid-cols-3 border-b border-black">
-          <div className="border-r border-black p-6 flex justify-center items-center hover:bg-neutral-50 transition-colors cursor-pointer group">
-            <Instagram className="w-5 h-5 stroke-[1.5px] group-hover:scale-110 transition-transform"/>
-          </div>
-          <div className="border-r border-black p-6 flex justify-center items-center hover:bg-neutral-50 transition-colors cursor-pointer group">
-            <Twitter className="w-5 h-5 stroke-[1.5px] group-hover:scale-110 transition-transform"/>
-          </div>
-          <div className="p-6 flex justify-center items-center hover:bg-neutral-50 transition-colors cursor-pointer group">
-            <Mail className="w-5 h-5 stroke-[1.5px] group-hover:scale-110 transition-transform"/>
           </div>
         </div>
 
         {/* Massive Logo Section */}
-        <div className="p-8 md:p-12 border-b border-black overflow-hidden relative group cursor-default">
-          <div className="absolute inset-0 bg-neutral-50 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"></div>
-          <h2 className="text-[22vw] font-display font-bold uppercase tracking-tighter leading-[0.7] text-center relative z-10 transition-all duration-700 group-hover:tracking-tight">
-            Guzel
+        <div className="border-t border-black/5 pt-12 pb-2 overflow-hidden relative group cursor-default">
+          <h2 className="text-[25vw] font-display font-light uppercase tracking-tighter leading-[0.7] text-center text-black/5 select-none transition-all duration-1000 group-hover:text-brand-gold/10 group-hover:tracking-[0.1em]">
+            AZRAN
           </h2>
         </div>
 
-        {/* Legal Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 p-8 md:px-12 md:py-8 gap-8 items-end">
-          <div className="text-[9px] uppercase tracking-[0.4em] font-bold leading-relaxed">
-            <div className="opacity-30">
-              All images and content are property of Guzel Studio AG.<br/>
-              Registration No. CH-100.3.000.000-1.
+        {/* Bottom Bar */}
+        <div className="bg-white border-t border-black/5 px-8 md:px-16 py-8">
+          <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-[9px] uppercase tracking-[0.4em] text-black/40 text-center md:text-left">
+              Website by <a href="https://api.whatsapp.com/send/?phone=8801733670129" className="text-black font-bold">Arc Lab</a> / © 2026 Azran Studio
             </div>
-            <div className="text-black">
-              Website designed and developed by <a href="https://api.whatsapp.com/send/?phone=8801733670129" target="_blank" rel="noopener noreferrer" className="font-bold underline">Arc Lab Technology</a>.
+            <div className="flex gap-8 text-[9px] uppercase tracking-[0.4em] text-black/40">
+              <div className="flex items-center gap-2"><Globe className="w-3 h-3" /> Dhaka</div>
+              <div className="hidden md:flex items-center gap-2 font-modern">{time} BST</div>
             </div>
-          </div>
-          <div className="text-[9px] uppercase tracking-[0.4em] font-bold opacity-30 md:text-right">
-            © 2026 Designed in Dhaka / Proudly Made in Bangladesh
           </div>
         </div>
       </footer>

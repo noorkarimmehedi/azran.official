@@ -4,67 +4,65 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[90vh] bg-white overflow-hidden border-b border-black">
-      <div className="grid grid-cols-1 md:grid-cols-12 h-full min-h-[90vh]">
-        {/* Left: Text & Info */}
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="md:col-span-5 p-8 md:p-16 flex flex-col justify-between border-r border-black"
+    <section className="relative w-full h-screen bg-brand-ivory overflow-hidden">
+      {/* Immersive Background Image */}
+      <motion.div
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 z-0"
+      >
+        <img
+          src={heroImage}
+          className="w-full h-full object-cover grayscale brightness-75 contrast-105"
+          alt="Luxury Couture"
+        />
+        <div className="absolute inset-0 bg-black/20" />
+      </motion.div>
+
+      {/* Elegant Content Overlay */}
+      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl"
         >
-          <div className="flex justify-between items-start">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Guzel / Studio</span>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">CH-26</span>
-          </div>
-
-          <div>
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[14vw] md:text-[12vw] font-display font-black leading-[0.9] tracking-tighter uppercase"
-            >
-              GU<br/>
-              ZEL <span className="text-4xl font-normal tracking-widest">STUDIO</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="mt-8 text-sm uppercase tracking-widest text-muted-foreground max-w-xs leading-relaxed"
-            >
-              Swiss modernist principles applied to contemporary luxury couture.
-            </motion.p>
-          </div>
-
-          <div className="flex justify-between items-end border-t border-black pt-8">
-            <div className="space-y-1">
-              <span className="block text-[10px] uppercase tracking-widest font-bold">Collection</span>
-              <span className="block text-xl font-display uppercase italic">Genesis 001</span>
-            </div>
-            <ArrowDownRight className="w-10 h-10 stroke-[1px]" />
-          </div>
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.5em] font-medium text-white/80 mb-6 block">
+            Azran Studio • Collection 2026
+          </span>
+          <h1 className="text-[12vw] md:text-[7vw] font-display font-light text-white leading-[0.9] tracking-tight uppercase mb-8">
+            Majestic <span className="italic">Elegance</span>
+          </h1>
+          <div className="w-24 h-px bg-brand-gold mx-auto mb-8" />
+          <p className="text-sm md:text-base uppercase tracking-[0.2em] text-white/90 max-w-lg mx-auto leading-relaxed font-light">
+            Swiss modernist principles applied to contemporary luxury couture.
+          </p>
         </motion.div>
 
-        {/* Right: Minimal Image */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          className="md:col-span-7 relative h-[50vh] md:h-auto bg-neutral-50 overflow-hidden group"
+        {/* Action Button */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="absolute bottom-20 flex flex-col items-center gap-4"
         >
-          <img 
-            src={heroImage} 
-            className="absolute inset-0 w-full h-full object-cover grayscale brightness-95 transition-all duration-1000 group-hover:scale-105"
-            alt="Hero"
-          />
-          {/* Subtle Grid Overlay */}
-          <div className="absolute inset-0 pointer-events-none grid grid-cols-3 opacity-10">
-            <div className="border-r border-black"></div>
-            <div className="border-r border-black"></div>
-          </div>
+          <span className="text-[9px] uppercase tracking-[0.3em] text-white/60">Discover More</span>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+          >
+            <ArrowDownRight className="w-6 h-6 text-white stroke-[1px]" />
+          </motion.div>
         </motion.div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-12 left-12 z-20 hidden md:block">
+        <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">Studio / CH-26</span>
+      </div>
+      <div className="absolute top-12 right-12 z-20 hidden md:block">
+        <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">Genesis V.01</span>
       </div>
     </section>
   );

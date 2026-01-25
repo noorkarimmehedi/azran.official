@@ -1,25 +1,37 @@
 import Layout from "@/components/layout";
 import Hero from "@/components/hero";
+import VideoReel from "@/components/video-reel";
 import ProductGrid from "@/components/product-grid";
 import BookingSection from "@/components/booking-section";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <Layout>
       <Hero />
-      
-      {/* Minimal Philosophy */}
-      <section className="border-b border-black">
-        <div className="grid grid-cols-1 md:grid-cols-12">
-          <div className="md:col-span-4 p-8 md:p-16 border-b md:border-b-0 md:border-r border-black">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">Core Philosophy</span>
+      <VideoReel />
+
+      {/* Brand Manifesto */}
+      <section className="bg-brand-ivory py-24 md:py-48 px-8 md:px-16 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5 }}
+          className="max-w-5xl mx-auto text-center"
+        >
+          <span className="text-[10px] uppercase tracking-[0.6em] font-medium text-brand-gold mb-12 block">
+            The Philosophy
+          </span>
+          <p className="text-4xl md:text-7xl font-display font-light leading-[1.1] tracking-tight lowercase">
+            "Art is the <span className="italic">subtraction</span> of the unnecessary, <br className="hidden md:block" />
+            revealing the <span className="font-medium text-brand-gold">soul</span> of the essential."
+          </p>
+          <div className="mt-16 flex justify-center items-center gap-6">
+            <div className="w-12 h-px bg-black/10" />
+            <span className="text-[10px] uppercase tracking-[0.4em] font-bold">Azran Studio Manifesto</span>
+            <div className="w-12 h-px bg-black/10" />
           </div>
-          <div className="md:col-span-8 p-8 md:p-16">
-            <p className="text-3xl md:text-5xl font-display font-light uppercase leading-tight tracking-tight max-w-3xl">
-              "We believe in <span className="italic font-normal">subtraction</span>. Removing the unnecessary until only the <span className="font-bold">essential</span> remains."
-            </p>
-          </div>
-        </div>
+        </motion.div>
       </section>
 
       <ProductGrid />
