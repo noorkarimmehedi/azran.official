@@ -3,6 +3,7 @@ import Hero from "@/components/hero";
 import VideoReel from "@/components/video-reel";
 import ProductGrid from "@/components/product-grid";
 import BookingSection from "@/components/booking-section";
+import Categories from "@/components/categories";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -36,6 +37,7 @@ export default function Home() {
 
       <ProductGrid />
       <BookingSection />
+      <Categories />
     </Layout>
   );
 }
