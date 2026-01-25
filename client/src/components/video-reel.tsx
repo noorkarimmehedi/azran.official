@@ -27,20 +27,22 @@ const REEL_VIDEOS = [
 
 export default function VideoReel() {
     return (
-        <section className="bg-brand-ivory py-24 md:py-48 flex flex-col items-center overflow-hidden">
-            <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-center mb-16 md:mb-24 px-8"
-            >
-                <span className="text-[10px] uppercase tracking-[0.6em] font-medium text-brand-gold mb-6 block">
-                    Editorial / SS26
-                </span>
-                <h2 className="text-5xl md:text-7xl font-display font-light uppercase tracking-tight text-black italic">
-                    Cinema <span className="not-italic">Noir</span>
-                </h2>
-            </motion.div>
+        <section className="bg-brand-ivory py-24 md:py-48 flex flex-col overflow-hidden">
+            <div className="w-full max-w-[1440px] mx-auto px-8 md:px-16 mb-16 md:mb-24">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-left"
+                >
+                    <span className="text-[10px] uppercase tracking-[0.6em] font-medium text-brand-gold mb-6 block">
+                        Editorial / SS26
+                    </span>
+                    <h2 className="text-5xl md:text-7xl font-display font-light uppercase tracking-tight text-black italic">
+                        Cinema <span className="not-italic">Noir</span>
+                    </h2>
+                </motion.div>
+            </div>
 
             {/* Horizontal Scroll Container */}
             <div className="w-full overflow-x-auto snap-x snap-mandatory flex md:justify-center gap-8 no-scrollbar pb-12 max-w-[1440px] mx-auto">
