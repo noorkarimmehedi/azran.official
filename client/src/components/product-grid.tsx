@@ -12,12 +12,12 @@ import imgBridal from "@assets/image_1768632436038.png";
 import imgEarth from "@assets/image_1768632360954.png";
 
 const products = [
-  { id: 1, title: "Noir Kurta", price: "$450", image: imgNoir },
-  { id: 2, title: "Sherwani", price: "$1,200", image: imgSherwani },
-  { id: 3, title: "Crimson", price: "$890", image: imgCrimson },
-  { id: 4, title: "Silk Blend", price: "$650", image: imgSilk },
+  { id: 1, title: "Noir Kurta", price: "BDT 45,000", image: imgNoir },
+  { id: 2, title: "Sherwani", price: "BDT 120,000", image: imgSherwani },
+  { id: 3, title: "Crimson", price: "BDT 89,000", image: imgCrimson },
+  { id: 4, title: "Silk Blend", price: "BDT 65,000", image: imgSilk },
   { id: 5, title: "Bridal", price: "Enquiry", image: imgBridal },
-  { id: 6, title: "Earth Classic", price: "$520", image: imgEarth }
+  { id: 6, title: "Earth Classic", price: "BDT 52,000", image: imgEarth }
 ];
 
 export default function ProductGrid() {

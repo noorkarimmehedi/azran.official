@@ -208,7 +208,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                         </div>
                         <div className="flex justify-between items-baseline px-4 md:px-8">
                           <h3 className="text-lg md:text-xl font-display font-light uppercase tracking-tight text-black">{p.title}</h3>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-gold font-bold">{p.price.split(' ')[1]}</span>
+                          <span className="text-[9px] uppercase tracking-widest text-brand-gold font-bold">{p.price}</span>
                         </div>
                       </a>
                     </Link>
