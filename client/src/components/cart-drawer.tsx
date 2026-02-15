@@ -78,10 +78,14 @@ export default function CartDrawer() {
                                     {items.map((item, index) => (
                                         <motion.div
                                             key={item.id}
-                                            initial={{ opacity: 0, x: 20 }}
-                                            animate={{ opacity: 1, x: 0 }}
+                                            initial={{ opacity: 0, x: 50 }}
+                                            animate={isOpen ? { opacity: 1, x: 0 } : {}}
                                             exit={{ opacity: 0, x: -20 }}
-                                            transition={{ duration: 0.3, delay: index * 0.05 }}
+                                            transition={{
+                                                duration: 0.8,
+                                                delay: index * 0.1,
+                                                ease: [0.22, 1, 0.36, 1]
+                                            }}
                                             className="p-6 md:p-8 hover:bg-black/[0.01] transition-colors group"
                                         >
                                             <div className="flex gap-6">
