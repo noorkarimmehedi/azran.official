@@ -60,13 +60,15 @@ export default function ProductGrid() {
               </div>
             </div>
 
-            <div className="flex justify-between items-baseline px-4 md:px-0">
-              <h3 className="text-xl md:text-3xl font-display font-light uppercase tracking-tight">
-                {p.title}
-              </h3>
-              <span className="text-[10px] uppercase tracking-widest text-brand-gold font-medium">{p.price}</span>
+            <div className="px-4 md:px-0 space-y-2">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2">
+                <h3 className="text-xl md:text-3xl font-display font-light uppercase tracking-tight">
+                  {p.title}
+                </h3>
+                <span className="text-[10px] uppercase tracking-widest text-brand-gold font-medium">{p.price}</span>
+              </div>
+              <span className="text-[9px] uppercase tracking-[0.3em] font-medium opacity-30 block">Bespoke Couture</span>
             </div>
-            <span className="text-[9px] uppercase tracking-[0.3em] font-medium opacity-30 mt-2 px-4 md:px-0">Bespoke Couture</span>
           </motion.div>
         ))}
       </div>
