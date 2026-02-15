@@ -114,21 +114,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              {/* Composition & Care Details */}
-              <div className="grid grid-cols-2 gap-x-12 gap-y-12 py-12 border-y border-black/5">
-                {[
-                  { label: "Material", val: product.material },
-                  { label: "Care", val: product.care },
-                  { label: "Shipping", val: "Complimentary Express" },
-                  { label: "Auth", val: "NFC Verified" }
-                ].map((item, i) => (
-                  <div key={i} className="space-y-2">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.4em] opacity-30 block">{item.label}</span>
-                    <span className="text-[10px] font-medium uppercase tracking-widest block text-black/80">{item.val}</span>
-                  </div>
-                ))}
-              </div>
-
               {/* Size Selector - Luxury Style */}
               <div className="space-y-8">
                 <div className="flex justify-between items-center">
@@ -161,6 +146,29 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 <p className="text-center text-[9px] uppercase tracking-widest text-black/30 font-medium">
                   Inclusive of VAT and Insured Global Freight
                 </p>
+              </div>
+
+              {/* Product Specifications - Minimal Swiss Grid */}
+              <div className="space-y-0 border-y border-black/5 mt-12">
+                {[
+                  { label: "Origin", val: "Handcrafted in Dhaka" },
+                  { label: "Time", val: "14 Business Days" },
+                  { label: "Material", val: "80% Cotton, 20% Silk" },
+                  { label: "Care", val: "Professional Dry Clean Only" },
+                  { label: "Shipping", val: "Complimentary Express" }
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="grid grid-cols-[120px_1fr] md:grid-cols-[160px_1fr] gap-8 md:gap-16 py-6 border-b border-black/5 last:border-b-0 group hover:bg-black/[0.01] transition-colors"
+                  >
+                    <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-black/30 group-hover:text-brand-gold transition-colors">
+                      {item.label}
+                    </span>
+                    <span className="text-[10px] md:text-[11px] uppercase tracking-[0.25em] font-medium text-black/80 leading-relaxed text-center">
+                      {item.val}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
