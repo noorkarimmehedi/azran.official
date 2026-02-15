@@ -79,7 +79,7 @@ export default function CartDrawer() {
                                         <motion.div
                                             key={item.id}
                                             initial={{ opacity: 0, x: 50 }}
-                                            animate={isOpen ? { opacity: 1, x: 0 } : {}}
+                                            animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                                             exit={{ opacity: 0, x: -20 }}
                                             transition={{
                                                 duration: 0.8,
