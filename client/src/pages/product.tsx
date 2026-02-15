@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowDownRight, ShieldCheck, Globe, Truck, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/cart-context";
+import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/layout";
 import imgNoir from "@assets/image_1768632448516.png";
 import imgSherwani from "@assets/image_1768632387917.png";
@@ -22,6 +24,9 @@ const products = {
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = products[params.id as keyof typeof products];
+  const [selectedSize, setSelectedSize] = useState<string>('M');
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -124,7 +129,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   {['S', 'M', 'L', 'XL', 'Custom'].map(s => (
                     <button
                       key={s}
-                      className="flex-1 h-14 border border-black/5 hover:border-brand-gold transition-all flex items-center justify-center text-[10px] uppercase tracking-[0.4em] font-bold text-black/40 hover:text-black hover:bg-white/50"
+                      onClick={() => setSelectedSize(s)}
+                      className={`flex-1 h-14 border transition-all flex items-center justify-center text-[10px] uppercase tracking-[0.4em] font-bold ${selectedSize === s
+                        ? 'border-brand-gold bg-white/50 text-black'
+                        : 'border-black/5 text-black/40 hover:border-brand-gold hover:text-black hover:bg-white/50'
+                        }`}
                     >
                       {s}
                     </button>
@@ -135,7 +144,20 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               {/* Premium Call to Action */}
               <div className="pt-8 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Button className="h-16 rounded-none bg-transparent border border-black/20 text-black text-[10px] uppercase font-bold tracking-[0.4em] hover:bg-black hover:text-white transition-all flex items-center justify-center gap-4 group">
+                  <Button
+                    onClick={() => {
+                      addToCart(
+                        {
+                          id: product.id,
+                          title: product.title,
+                          price: product.price,
+                          image: product.image
+                        },
+                        selectedSize
+                      );
+                    }}
+                    className="h-16 rounded-none bg-transparent border border-black/20 text-black text-[10px] uppercase font-bold tracking-[0.4em] hover:bg-black hover:text-white transition-all flex items-center justify-center gap-4 group"
+                  >
                     Add to Cart
                   </Button>
                   <Button className="h-16 rounded-none bg-black text-white text-[10px] uppercase font-bold tracking-[0.4em] hover:bg-brand-gold transition-all flex items-center justify-center gap-4 group">

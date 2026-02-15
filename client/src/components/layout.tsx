@@ -1,14 +1,17 @@
 import { Link, useLocation } from "wouter";
-import { ArrowUpRight, Instagram, Twitter, Mail, Menu, Globe, Clock, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Instagram, Twitter, Mail, Menu, Globe, Clock, ShieldCheck, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/contexts/cart-context";
+import CartDrawer from "@/components/cart-drawer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
   const [time, setTime] = useState('');
+  const { setIsOpen: setCartOpen, itemCount } = useCart();
 
   useEffect(() => {
     const updateTime = () => {
@@ -43,13 +46,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex-1 flex items-center justify-end gap-6 md:gap-10">
-            <div className="md:hidden">
-              <Link href="/cart">
-                <Button variant="ghost" className="h-12 px-2 flex items-center justify-center rounded-none group hover:bg-transparent">
-                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-70 group-hover:opacity-100 transition-opacity">Cart</span>
-                </Button>
-              </Link>
-            </div>
+            {/* Cart Button - Mobile & Desktop */}
+            <Button
+              variant="ghost"
+              onClick={() => setCartOpen(true)}
+              className="h-12 px-3 flex items-center justify-center rounded-none group hover:bg-transparent relative"
+            >
+              <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-70 group-hover:opacity-100 transition-opacity">
+                Cart
+              </span>
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-brand-gold text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
+            </Button>
 
             <div className="hidden md:flex items-center gap-10 text-[10px] uppercase tracking-[0.3em] font-medium opacity-70">
               <Link href="/journal"><a className="hover:text-brand-gold transition-colors">Journal</a></Link>
@@ -139,6 +150,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </nav>
+
+      {/* Cart Drawer */}
+      <CartDrawer />
 
       {/* Main Content with Transition */}
       <main className="flex-grow overflow-hidden">
