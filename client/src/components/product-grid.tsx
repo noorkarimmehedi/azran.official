@@ -29,7 +29,7 @@ export default function ProductGrid() {
       <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 px-8 md:px-0">
         <div>
           <span className="text-[10px] uppercase tracking-[0.5em] font-medium text-brand-gold mb-4 block">Archive 2026</span>
-          <h2 className="text-5xl md:text-7xl font-display font-light uppercase tracking-tight">Selected <span className="italic">Works</span></h2>
+          <h2 className="text-5xl md:text-7xl font-display font-light uppercase tracking-tight">Selected <span className="font-bold">Works</span></h2>
         </div>
         <div className="flex gap-12 text-[10px] uppercase tracking-[0.3em] font-bold opacity-40">
           <span>Vol. 01</span>

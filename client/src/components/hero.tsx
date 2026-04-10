@@ -32,7 +32,7 @@ export default function Hero() {
             Azran Studio • Collection 2026
           </span>
           <h1 className="text-[12vw] md:text-[7vw] font-display font-light text-white leading-[0.9] tracking-tight uppercase mb-8">
-            Majestic <span className="italic">Elegance</span>
+            Majestic <span className="font-bold">Elegance</span>
           </h1>
           <div className="w-24 h-px bg-brand-gold mx-auto mb-8" />
           <p className="text-sm md:text-base uppercase tracking-[0.2em] text-white/90 max-w-lg mx-auto leading-relaxed font-light">
