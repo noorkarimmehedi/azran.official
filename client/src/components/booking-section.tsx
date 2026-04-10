@@ -66,7 +66,7 @@ export default function BookingSection() {
 
               <h2 className="text-4xl md:text-8xl font-display font-light uppercase leading-[0.8] tracking-tight text-black mb-12 break-words">
                 Private<br />
-                <span className="italic block mt-4">Consultation</span>
+                <span className="font-bold block mt-4">Consultation</span>
               </h2>
 
               <div className="w-20 h-px bg-brand-gold mb-12" />

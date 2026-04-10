@@ -24,7 +24,7 @@ export default function Home() {
             The Philosophy
           </span>
           <p className="text-4xl md:text-7xl font-display font-light leading-[1.1] tracking-tight lowercase">
-            "Art is the <span className="italic">subtraction</span> of the unnecessary, <br className="hidden md:block" />
+            "Art is the <span className="font-bold">subtraction</span> of the unnecessary, <br className="hidden md:block" />
             revealing the <span className="font-medium text-brand-gold">soul</span> of the essential."
           </p>
           <div className="mt-16 flex justify-center items-center gap-6">

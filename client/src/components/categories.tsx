@@ -56,10 +56,10 @@ export default function Categories() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-[clamp(3.2rem,11vw,8rem)] font-display font-light uppercase tracking-tight text-black italic leading-[0.88]"
+                    className="text-[clamp(3.2rem,11vw,8rem)] font-display font-light uppercase tracking-tight text-black leading-[0.88]"
                 >
-                    The Maison<br />
-                    <span className="not-italic">Archives</span>
+                    <span className="font-bold">The Maison</span><br />
+                    Archives
                 </motion.h2>
             </div>
 

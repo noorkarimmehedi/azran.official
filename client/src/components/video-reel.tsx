@@ -38,8 +38,8 @@ export default function VideoReel() {
                     <span className="text-[10px] uppercase tracking-[0.6em] font-medium text-brand-gold mb-6 block">
                         Editorial / SS26
                     </span>
-                    <h2 className="text-5xl md:text-7xl font-display font-light uppercase tracking-tight text-black italic">
-                        Cinema <span className="not-italic">Noir</span>
+                    <h2 className="text-5xl md:text-7xl font-display font-light uppercase tracking-tight text-black">
+                        <span className="font-bold">Cinema</span> Noir
                     </h2>
                 </motion.div>
             </div>
